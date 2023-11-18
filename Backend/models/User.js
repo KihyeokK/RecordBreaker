@@ -14,7 +14,7 @@ const userSchema = new Schema({
     },
     profilePic: {
         type: String,
-        required: true,
+        required: false,
     },
     name: {
         type: String,
@@ -37,6 +37,10 @@ const userSchema = new Schema({
         required: true
     },
     friendRequests: {
+        type: Array,
+        required: true
+    },
+    groups: {
         type: Array,
         required: true
     },
