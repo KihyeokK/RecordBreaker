@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Box, Button, TextField } from "@mui/material";
+import {  Box, Button, TextField, Divider } from "@mui/material";
 
 
 //used for both registration screen and login screen
@@ -26,8 +26,10 @@ const LogInForm = ({isLoginScreen}) => {
       <Box sx={{ mt: 5, ml: 5, mr: 5, fontFamily: "Poppins" }}>
         <Box sx={{ fontSize: "14px", mt: 5 }}>Create username</Box>
         <TextField sx={{width: "100%", input: { color: "white", background: "" }}} id="standard-basic" label="" variant="standard" />
+        <Divider style={{ background: '#898989' }} />
         <Box sx={{ fontSize: "14px", mt: 3 }}>Create password</Box>
         <TextField sx={{width: "100%", input: { color: "white", background: "" }}} onChange={handlePasswordChange} id="standard-basic" label="" variant="standard" />
+        <Divider style={{ background: '#898989' }} />
       </Box>}
   </>
   );
