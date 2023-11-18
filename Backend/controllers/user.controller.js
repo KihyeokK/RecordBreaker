@@ -113,3 +113,23 @@ exports.getGroups = async (req, res) => {
         groups: groups || []
     });
 }
+
+exports.getFriendPosts = async (req, res) => {
+    try {
+        const userName = req.params.userName;
+        
+        // get list of people in the group
+        const friends = await User.find({ userName: userName }).friends;
+        const memberIds = friends.map((friend) => friend.userName);
+        req.users = memberIds;
+        // get all posts from the group members
+        const posts = await getTodayPosts(req, res);
+        return res.status(200).json({
+          where: "getGroupPosts",
+          posts: posts,
+        });
+    }
+    catch (error) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}

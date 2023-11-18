@@ -4,8 +4,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-// import routes here
-
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 8080;
@@ -20,14 +18,16 @@ app.get('/', (req, res) => {
 
 // import routes here
 const userRoutes = require("./routes/user.route");
+const postRoutes = require("./routes/post.route");
+const groupRoutes = require("./routes/group.route");
 
 // put your routes here
 // every routes will be under /api
 // example endpoint: /api/users/:id
 
 app.use("/api", userRoutes);
-
-
+app.use("/api", postRoutes);
+app.use("/api", groupRoutes);
 
 mongoose
   .connect(MONGODB_URI)

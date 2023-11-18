@@ -55,3 +55,24 @@ exports.getPost = async (req, res) => {
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
+
+exports.getTodayPosts = async (req, res) => {
+    try {
+        const users = req.users;
+        const today = new Date();
+        const todayPosts = await Post.find({
+            userName: { $in: users },
+            createdAt: {
+                $gte: today.setHours(0, 0, 0),
+                $lt: today.setHours(23, 59, 59),
+            },
+        });
+    
+        return res.status(200).json({
+          where: "getTodayPosts",
+          posts: todayPosts,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
