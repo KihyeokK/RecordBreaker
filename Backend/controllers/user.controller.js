@@ -1,12 +1,14 @@
 // import User model
 // const User = require("../models/User");
 
-export default class userController {
-    createUser = async (req, res) => {  
+exports.createUser = async (req, res) => {  
+    return res.status(200).json({
+        where: "createUser"
+    });
+}   
 
-    }   
-
-    getUser = async (req, res) => {
-
-    }
+exports.getUser = async (req, res) => {
+    return res.status(200).json({
+        where: "getUser"
+    });
 }

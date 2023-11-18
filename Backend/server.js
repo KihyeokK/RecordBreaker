@@ -18,9 +18,13 @@ app.get('/', (req, res) => {
     res.send("Hello World");
 })
 
+// import routes here
+const userRoutes = require("./routes/user.route");
+
 // put your routes here
 // every routes will be under /api
 // example endpoint: /api/users/:id
+
 app.use("/api", userRoutes);
 
 
