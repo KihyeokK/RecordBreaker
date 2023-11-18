@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import { Stack, Box, Button, Input } from "@mui/material";
+import {  Box, Button, TextField } from "@mui/material";
 
 
 //used for both registration screen and login screen
 const LogInForm = ({isLoginScreen}) => {
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
 
+    const handleUsernameChange = (event) => {
+        setUsername(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
 
   return (
   <>
     {isLoginScreen ? 
-    <form onSubmit={}>
-      <Box sx={{ mt: 3, ml: 5, mr: 5, fontFamily: "Poppins" }}>
+      <Box sx={{ mt: 3, ml: 5, mr: 5, fontFamily: "Poppins", color: "white" }}>
         <Box sx={{ fontSize: "14px" }}>Create username</Box>
-        <Input id="username" aria-describedby="my-helper-text" />
         <Box sx={{ fontSize: "14px", mt: 3 }}>Create password</Box>
-      </Box>
-    </form>: 
+      </Box> : 
   
-    <form onSubmit={() => }>
-      <Box sx={{ mt: 3, ml: 5, mr: 5, fontFamily: "Poppins" }}>
-        <Box sx={{ fontSize: "14px" }}>Username</Box>
-
-        <Input id="username" aria-describedby="my-helper-text" />
+      <Box sx={{ mt: 5, ml: 5, mr: 5, fontFamily: "Poppins" }}>
+        <Box sx={{ fontSize: "14px", mt: 5 }}>Create username</Box>
+        <TextField sx={{width: "100%", input: { color: "white", background: "" }}} id="standard-basic" label="" variant="standard" />
         <Box sx={{ fontSize: "14px", mt: 3 }}>Create password</Box>
-      </Box>
-    </form>}
+        <TextField sx={{width: "100%", input: { color: "white", background: "" }}} onChange={handlePasswordChange} id="standard-basic" label="" variant="standard" />
+      </Box>}
   </>
   );
 };

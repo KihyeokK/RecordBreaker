@@ -8,7 +8,8 @@ const LoginHeader = () => {
         display: "flex",
         justifyContent: "center",
         fontSize: "30px",
-        mt: 4
+        mt: 6,
+        pb: 2
       }}
     >
         Username
