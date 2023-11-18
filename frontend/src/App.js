@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import { useEffect } from "react";
+import RouterComponent from "./RouterComponent";
+import { Box } from "@mui/material";
+
+const getUserId = () => {
+  const userId = sessionStorage.getItem("userId");
+  // deny access to other pages if not logged in
+  if (!userId && window.location.pathname !== "/") {
+    // window.location.href = "/";
+    return null;
+  } else {
+    return userId;
+  }
+}
 
 function App() {
+  const userId = getUserId(); // userId or null
+  useEffect(() => {
+    if (userId && window.location.pathname === "/") {
+      window.location.href = "/feed"; // If user is logged in, redirect to "/feed"
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className="app">
+    <Box
+      sx={{}}
+    >
+      <RouterComponent />
+    </Box>
+  </Box>
   );
 }
 
