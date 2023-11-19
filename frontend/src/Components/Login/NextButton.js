@@ -1,8 +1,31 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { login } from "../../services";
+import { UserContext } from "../../Contexts/UserContext";
+import { useContext } from "react";
 
-const NextButton = () => {
+const NextButton = (props) => {
+    const userContext = useContext(UserContext);
+
+    const handleLogin = async () => {
+        try {
+            const response = await login({ userName: props.userName, password: props.password });
+            console.log(response);
+            if (response.user) {
+                console.log()
+              sessionStorage.setItem("userId", response.user.userName);
+              userContext.setUser(response.user);
+              window.location.href = "/feed"; // redirect to feed once logged in
+            } else {
+              alert("Incorrect username or password. Please try again.");
+              window.location.href = "/";
+            }
+          } catch (error) {
+            alert("Incorrect username or password. Please try again.");
+            window.location.href = "/";
+          }
+    }
   return (
     <Box sx={{display: "flex", justifyContent: "center", mt: "400px"}}>
       <Button
@@ -16,12 +39,15 @@ const NextButton = () => {
           color: "#191919",
           fontSize: 15,
         }}
+        onClick={() => {
+            handleLogin()
+        }}
       >
         <Link
           to="/feed"
           style={{ color: "inherit", textDecoration: "inherit" }}
         >
-          Next
+          Login
         </Link>
       </Button>
     </Box>

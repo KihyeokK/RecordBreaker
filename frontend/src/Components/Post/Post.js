@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import pic1 from "../../images/esme.png";
 import album1 from "../../images/album1.png";
 import goldDisk from "../../images/goldDisk.svg";
-import emptyGoldDisk from "../../images/emptyGoldDisk.svg";
+import silverDisk from "../../images/silverDisk.svg";
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 const Post = (props) => {
@@ -55,7 +55,7 @@ const Post = (props) => {
                 <Box sx={{mr: 1, fontSize: "12px"}}>{props.numGoldenDiscs}</Box>
                 <Box component="img" sx={{ mr: 1, maxHeight: { xs : 24 }, maxWidth: { xs: 24 }}} alt="Gold Disks" src={goldDisk}></Box>
                 <Box sx={{mr: 1, fontSize: "12px"}}>{props.numDiscs}</Box>
-                <Box component="img" sx={{ mr: 1, maxHeight: { xs : 19 }, maxWidth: { xs: 19 }}} alt="Gold Disks" src={emptyGoldDisk}></Box>
+                <Box component="img" sx={{ mr: 1, maxHeight: { xs : 19 }, maxWidth: { xs: 19 }}} alt="Gold Disks" src={silverDisk}></Box>
             </Box>
           </Box>
 

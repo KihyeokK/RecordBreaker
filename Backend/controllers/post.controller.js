@@ -25,14 +25,17 @@ async function refreshAccessToken(spotifyApi) {
 }
 
 exports.createPost = async (req, res) => {
-    try{
-        const { userName, song, numDiscs, numGoldenDiscs, comments } = req.body;
+    try {
+        const { userName, song } = req.body;
+
         // Check if the user exists
         const user = await User.findOne({ userName: userName });
         if (!user) {
             return res.status(400).json({ error: "User not found" });
         }
+
         const today = new Date();
+        
         // Check if the user has already posted today
         const todayPost = await Post.findOne({
             userName: userName,
@@ -46,38 +49,21 @@ exports.createPost = async (req, res) => {
             return res.status(400).json({ error: "User has already posted today" });
         }
         
-        //using song and spotify api to get songID, name, artist, albumCover
-        //Use Spotify API to get song details
+        // Initialize Spotify API with credentials
         const spotifyApi = new SpotifyWebApi({
             clientId: process.env.SPOTIFY_CLIENT_ID,
             clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-            redirectUri: process.env.SPOTIFY_REDIRECT_URI
+            redirectUri: 'http://localhost/',
         });
-        // Get an access token
 
-        
+        // Get an access token
+        await refreshAccessToken(spotifyApi);
 
         // Use the song information to search for the track on Spotify
-        let searchResults;
-        let firstResult;
-        try {
-            searchResults = await spotifyApi.searchTracks(song);
-            firstResult = searchResults.body.tracks.items[0];
-        } catch (error) {
-            if (error.response && error.response.status === 401) {
-                // If the response status is 401 (Unauthorized), the access token may have expired.
-                // Attempt to refresh the access token
-                await refreshAccessToken(spotifyApi);
-                // Retry the original request or handle it accordingly.
-                searchResults = await spotifyApi.searchTracks(song);
-                firstResult = searchResults.body.tracks.items[0];
-            } else {
-                console.error('Error making Spotify API request:', error.message);
-                return res.status(500).json({ error: "Internal Server Error" });
-            }
-        }
+        const searchResults = await spotifyApi.searchTracks(song);
+        const firstResult = searchResults.body.tracks.items[0];
 
-        // Now you can use details from firstResult, e.g., firstResult.name, firstResult.artists, etc.
+        // Now you can use details from firstResult
         console.log('Song details:', {
             name: firstResult.name,
             artists: firstResult.artists.map(artist => artist.name),
@@ -85,7 +71,8 @@ exports.createPost = async (req, res) => {
             albumCover: firstResult.album.images[0].url,
             // Add other details as needed
         });
-        // Save the retrieved song details to the database or use them as needed
+
+        // TODO: Save the retrieved song details to the database or use them as needed
         const songID = firstResult.id;
         const name = firstResult.name;
         const artist = firstResult.artists.map(artist => artist.name);
@@ -97,15 +84,13 @@ exports.createPost = async (req, res) => {
             artist: artist,
             albumCover: albumCover,
         };
-        createSong({ body: params }, res);
+        await createSong({ body: params }, res);
 
         const newPost = new Post({ 
-            userName,
-            songID,
-            numDiscs, 
-            numGoldenDiscs, 
-            comments 
+            userName, 
+            songID
         });
+
         // Save the post to the database
         await newPost.save();
 
@@ -117,7 +102,7 @@ exports.createPost = async (req, res) => {
         console.log(error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
-}
+};
 // handle getposts
 exports.getPosts = async (req, res) => {
     try {
