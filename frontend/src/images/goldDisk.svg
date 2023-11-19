@@ -1,0 +1,15 @@
+<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Gold Disk Esme">
+<circle id="Ellipse 8" cx="12.5961" cy="12.2199" r="11.4189" fill="url(#paint0_angular_85_5224)" stroke="#F9F388" stroke-width="0.5"/>
+<circle id="Ellipse 9" cx="12.5962" cy="12.2199" r="9.62408" stroke="#F9F388" stroke-width="0.2"/>
+<circle id="Ellipse 10" cx="12.596" cy="12.2199" r="3.78995" stroke="#F9F388" stroke-width="0.2"/>
+<path id="Vector 7" d="M14.5405 8.33036L16.4855 5.4129" stroke="#F9F388" stroke-width="0.2"/>
+<path id="Vector 9" d="M8.70605 19.0265L10.651 16.109" stroke="#F9F388" stroke-width="0.2"/>
+</g>
+<defs>
+<radialGradient id="paint0_angular_85_5224" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(12.5961 12.2199) rotate(90) scale(11.6689)">
+<stop offset="0.526042" stop-color="#E4B85A"/>
+<stop offset="1" stop-color="#E4B85A"/>
+</radialGradient>
+</defs>
+</svg>
