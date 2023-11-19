@@ -27,7 +27,7 @@ const FeedHeader = (props) => {
           <ArrowBackIosIcon style={{ padding: 0, marginLeft: "10px", fontSize: "25px",  }}></ArrowBackIosIcon>
         </Box>
       ) : (
-        <Link to="/" style={{ color: "white", textDecoration: "inherit" }}>
+        <Link to="/addFriends" style={{ color: "white", textDecoration: "inherit" }}>
           <PersonAddIcon style={{ fontSize: "35px" }}></PersonAddIcon>
         </Link>
       )}
