@@ -7,7 +7,7 @@ import NewGroup from "./NewGroup";
 const GroupList = () => {
   const fetchedGroups = [
     {
-      groupID: "dfdd",
+      groupId: "dfdd",
       name: "CodeJam",
       numMembers: 5,
       members: [],
@@ -16,7 +16,7 @@ const GroupList = () => {
       createdAt: new Date(),
     },
     {
-      groupID: "asga",
+      groupId: "asga",
       name: "Manaba!!",
       numMembers: 24,
       members: [],
@@ -25,7 +25,7 @@ const GroupList = () => {
       createdAt: new Date(),
     },
     {
-      groupID: "hhrf",
+      groupId: "hhrf",
       name: "Taylor Swift",
       numMembers: 1000,
       members: [],
@@ -42,6 +42,7 @@ const GroupList = () => {
           return (
             <Grid item xs={6}>
               <Group
+                groupId={group.groupId}
                 groupName={group.name}
                 numMembers={group.numMembers}
                 numGoldenDiscs={group.members}

@@ -41,7 +41,8 @@ const PostList = () => {
     ]
 
     return (
-        <Box sx={{mb: 5}}>
+        <Box sx={{mb: 2, mt:3}}>
+            <Box sx={{fontSize: "14px", mb:2}}>TODAY</Box>
             {fetchedPosts.map((post) => {
                 return (
                     <Post userName={post.userName} song={post.song} numDiscs={post.numDiscs} numGoldenDiscs={post.numGoldenDiscs} comments={post.comments} createdAt={post.createdAt}></Post>

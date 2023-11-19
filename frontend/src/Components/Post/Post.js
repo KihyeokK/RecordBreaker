@@ -11,12 +11,12 @@ const Post = (props) => {
   return (
     <Box
       sx={{
-        mt: 3,
+        mb: 3,
         display: "flex",
         flexDirection: "column",
         bgcolor: "#464669",
         width: "307px",
-        height: "200px",
+        height: "210px",
         borderRadius: "8px",
       }}
     >
