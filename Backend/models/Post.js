@@ -6,21 +6,24 @@ const postSchema = new Schema({
         type: String,
         required: true,
     },
-    song: {
+    songID: {
         type: String,
         required: true
     },
     numDiscs: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     numGoldenDiscs: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     comments: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     createdAt: {
         type: Date,
