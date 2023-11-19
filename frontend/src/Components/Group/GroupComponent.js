@@ -9,7 +9,7 @@ import GroupList from './GroupList'
 const GroupComponent = () => {
     return (
         <Box >
-            <FeedHeader></FeedHeader>
+            <FeedHeader isBackButtonNeeded={true}></FeedHeader>
             <NavBarContainer isFeed={false} />
             <GroupList></GroupList>
         </Box>

@@ -8,7 +8,7 @@ import PostsContainer from './PostsContainer'
 const FeedComponent = () => {
     return (
         <Box >
-            <FeedHeader></FeedHeader>
+            <FeedHeader isBackButtonNeeded={false}></FeedHeader>
             <NavBarContainer isFeed={true} />
             <Box sx={{display: "flex", justifyContent: "center"}}><NewPost /></Box>
             <PostsContainer />

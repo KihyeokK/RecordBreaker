@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Group from "./Group";
+import NewGroup from "./NewGroup";
 
 const GroupList = () => {
   const fetchedGroups = [
@@ -35,7 +36,7 @@ const GroupList = () => {
   ];
 
   return (
-    <Box sx={{ml:3, mr: 3, mt: 3}}>
+    <Box sx={{ ml: 3, mr: 3, mt: 3 }}>
       <Grid container rowSpacing={2} columnSpacing={2}>
         {fetchedGroups.map((group) => {
           return (
@@ -51,6 +52,9 @@ const GroupList = () => {
             </Grid>
           );
         })}
+        <Grid item xs={6}>
+          <NewGroup></NewGroup>
+        </Grid>
       </Grid>
     </Box>
   );

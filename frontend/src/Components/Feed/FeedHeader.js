@@ -1,11 +1,12 @@
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import logo from "../../images/logo.png";
-import disk from "../../images/cd.svg"
+import disk from "../../images/cd.svg";
 import { Link } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-const FeedHeader = () => {
+const FeedHeader = (props) => {
   return (
     <Box
       sx={{
@@ -21,9 +22,15 @@ const FeedHeader = () => {
       {/* <Box>
         <img src={logo} alt="My Image" />
       </Box> */}
-      <Link to="/" style={{ color: "white", textDecoration: "inherit" }}>
-        <PersonAddIcon style={{ fontSize: "35px" }}></PersonAddIcon>
-      </Link>
+      {props.isBackButtonNeeded ? (
+        <Box onClick={() => {window.history.back()}}>
+          <ArrowBackIosIcon style={{ padding: 0, marginLeft: "10px", fontSize: "25px",  }}></ArrowBackIosIcon>
+        </Box>
+      ) : (
+        <Link to="/" style={{ color: "white", textDecoration: "inherit" }}>
+          <PersonAddIcon style={{ fontSize: "35px" }}></PersonAddIcon>
+        </Link>
+      )}
       <Box
         component="img"
         sx={{
@@ -36,7 +43,11 @@ const FeedHeader = () => {
         src={logo}
       />
       <Link to="/" style={{ color: "white", textDecoration: "inherit" }}>
-        <Box component="img" sx={{color: "white", fontSize:"35px", margin: 0}} src={disk}></Box>
+        <Box
+          component="img"
+          sx={{ color: "white", fontSize: "35px", margin: 0 }}
+          src={disk}
+        ></Box>
       </Link>
     </Box>
   );
