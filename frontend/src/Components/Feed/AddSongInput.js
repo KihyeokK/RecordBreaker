@@ -7,7 +7,7 @@ import { useData } from "../../Contexts/PostedContext";
 
 const AddSongInput = () => {
   const [postText, setPostText] = useState("");
-  // const { posted, setPosted } = useData();
+//   const { posted, setPosted } = useData();
 
   const handleCreatePost = () => {
     if (postText.trim() !== "") {
@@ -16,7 +16,7 @@ const AddSongInput = () => {
       createPost({userName: userName ,song: postText});
       // Clear the input after creating the post
       setPostText("");
-      setPosted(!posted);
+    //   setPosted(!posted);
     }
   };
 

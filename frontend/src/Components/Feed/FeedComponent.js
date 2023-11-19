@@ -29,7 +29,7 @@ const FeedComponent = () => {
       <FeedHeader isBackButtonNeeded={false}></FeedHeader>
       <NavBarContainer isFeed={true} />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-      {!posted && <NewPost openModal={modalOpenHandler} />}
+      <NewPost openModal={modalOpenHandler} />
       </Box>
       <PostsContainer groupId={null} />
       {isModalOpen && (

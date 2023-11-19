@@ -11,12 +11,15 @@ const NextButton = (props) => {
     const handleLogin = async () => {
         try {
             const response = await login({ userName: props.userName, password: props.password });
-            console.log(response);
-            if (response.user) {
-                console.log()
+            const user = response.user;
+            console.log(user);
+            if (user) {
               sessionStorage.setItem("userId", response.user.userName);
-              userContext.setUser(response.user);
-              window.location.href = "/feed"; // redirect to feed once logged in
+              console.log("user is ", user);
+              console.log("userContext.setUser is ", userContext.setUser);
+              userContext.setUser((prevUser) => ({...prevUser , ...user}));
+              console.log("userContext.user is ", userContext.user); // it does get updated, I just can't see it directly.
+            //   window.location.href = "/feed"; // redirect to feed once logged in
             } else {
               alert("Incorrect username or password. Please try again.");
               window.location.href = "/";

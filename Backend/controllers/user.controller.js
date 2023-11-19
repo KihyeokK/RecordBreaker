@@ -65,11 +65,12 @@ exports.createUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
     try {
-        const { userName } = req.body;
-        const User = await User.find({ userName: userName });
+        const userName = req.params.id;
+        console.log(userName);
+        const user = await User.findOne({ userName: userName });
         return res.status(200).json({
             where: "getUser",
-            User: User
+            user: user
         });
     }
     catch (err) {
