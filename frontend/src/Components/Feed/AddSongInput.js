@@ -3,9 +3,11 @@ import { Box, Input, Button } from "@mui/material";
 import { createPost } from "../../services";
 import { UserContext } from "../../Contexts/UserContext";
 import { useContext } from "react";
+import { useData } from "../../Contexts/PostedContext";
 
 const AddSongInput = () => {
   const [postText, setPostText] = useState("");
+  // const { posted, setPosted } = useData();
 
   const handleCreatePost = () => {
     if (postText.trim() !== "") {
@@ -14,6 +16,7 @@ const AddSongInput = () => {
       createPost({userName: userName ,song: postText});
       // Clear the input after creating the post
       setPostText("");
+      setPosted(!posted);
     }
   };
 

@@ -55,6 +55,7 @@ app.get('/', (req, res) => {
 const userRoutes = require("./routes/user.route");
 const postRoutes = require("./routes/post.route");
 const groupRoutes = require("./routes/group.route");
+const songRoutes = require("./routes/song.route");
 
 // put your routes here
 // every routes will be under /api
@@ -63,6 +64,7 @@ const groupRoutes = require("./routes/group.route");
 app.use("/api", userRoutes);
 app.use("/api", postRoutes);
 app.use("/api", groupRoutes);
+app.use("/api", songRoutes);
 
 mongoose
   .connect(MONGODB_URI)

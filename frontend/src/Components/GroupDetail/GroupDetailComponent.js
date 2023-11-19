@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box } from '@mui/material';
 import NavBarContainer from '../NavBar/NavBarContainer'
 import FeedHeader from '../Feed/FeedHeader'
@@ -8,6 +8,7 @@ import GroupList from '../Group/GroupList'
 import PostsContainer from '../Feed/PostsContainer'
 import GroupProfile from './GroupProfile'
 import { useSearchParams, useParams } from "react-router-dom";
+import { getGroup } from "../../services";
 
 const GroupDetailComponent = (props) => {
     // get the id from the endpoint in the form of groups/:id
@@ -19,7 +20,7 @@ const GroupDetailComponent = (props) => {
             <FeedHeader isBackButtonNeeded={true}></FeedHeader>
             {/* pass groupID in props to GroupProfile */}
             <GroupProfile groupId={groupId} />
-            <PostsContainer />
+            <PostsContainer groupId={groupId}/>
         </Box>
     )
 }

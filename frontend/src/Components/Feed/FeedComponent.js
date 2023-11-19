@@ -4,11 +4,14 @@ import NavBarContainer from "../NavBar/NavBarContainer";
 import FeedHeader from "./FeedHeader";
 import NewPost from "../Post/NewPost";
 import PostsContainer from "./PostsContainer";
-import { useState } from "react";
+import { useState } from 'react';
 import AddSongModal from "./AddSongModal"
+import { useData } from "../../Contexts/PostedContext";
 
 const FeedComponent = () => {
+  // const { posted, setPosted } = useData();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const modalCloseHandler = () => {
     setIsModalOpen(false);
@@ -26,9 +29,9 @@ const FeedComponent = () => {
       <FeedHeader isBackButtonNeeded={false}></FeedHeader>
       <NavBarContainer isFeed={true} />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <NewPost openModal={modalOpenHandler} />
+      {!posted && <NewPost openModal={modalOpenHandler} />}
       </Box>
-      <PostsContainer />
+      <PostsContainer groupId={null} />
       {isModalOpen && (
           <Modal
             open={isModalOpen}
