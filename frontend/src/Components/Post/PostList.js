@@ -1,51 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Post from "./Post";
+import { getGroupPosts, getFriendPosts } from "../../services";
 
-const PostList = () => {
+const PostList = (props) => {
+    const { groupID } = props;
+    const [fetchedPosts, setFetchedPosts] = useState([]);
 
-    const fetchedPosts = [
-        {
-            userName: "esme_bella",
-            song: "My Love Mine",
-            numDiscs: 33,
-            numGoldenDiscs: 6,
-            comments: [],
-            createdAt: new Date()
-        },
-        {
-            userName: "jaewonmoon00",
-            song: "Paris in the Rain",
-            numDiscs: 24,
-            numGoldenDiscs: 5,
-            comments: [],
-            createdAt: new Date()
-        },
-        {
-            userName: "joe_khkim",
-            song: "Billie Jean",
-            numDiscs: 14,
-            numGoldenDiscs: 6,
-            comments: [],
-            createdAt: new Date()
-        },
-        {
-            userName: "d_zhang2",
-            song: "Super Shy",
-            numDiscs: 74,
-            numGoldenDiscs: 8,
-            comments: [],
-            createdAt: new Date()
-        },
-    ]
+    useEffect(() => {
+        const fetchPosts = async () => {
+            if (groupID) {
+                console.log("fetching group posts");
+                const response = await getGroupPosts(groupID);
+                setFetchedPosts(response.posts);
+            }
+            else {
+                console.log("fetching friend posts");
+                const userName = sessionStorage.getItem("userId");
+                const response = await getFriendPosts(userName);
+                setFetchedPosts(response.posts);
+            }
+            console.log("fetched posts: ", fetchedPosts);
+        }
+        fetchPosts();
+        console.log("fetched posts: ", fetchedPosts);
+    } , []);
 
     return (
         <Box sx={{mb: 2, mt:3}}>
             <Box sx={{fontSize: "14px", mb:2}}>TODAY</Box>
-            {fetchedPosts.map((post) => {
+            {fetchedPosts?.map((post) => {
                 return (
-                    <Post userName={post.userName} song={post.song} numDiscs={post.numDiscs} numGoldenDiscs={post.numGoldenDiscs} comments={post.comments} createdAt={post.createdAt}></Post>
+                    <Post userName={post.userName} songId={post.songID} numDiscs={post.numDiscs} numGoldenDiscs={post.numGoldenDiscs} comments={post.comments} createdAt={post.createdAt}></Post>
                 )
             })}
         </Box>

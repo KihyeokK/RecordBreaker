@@ -1,5 +1,6 @@
 //import User model
 const User = require("../models/User");
+const { getTodayPosts } = require("./post.controller");
 
 exports.createUser = async (req, res) => {
     try {
@@ -126,31 +127,41 @@ exports.getFriends = async (req, res) => {
 }
 
 exports.getGroups = async (req, res) => {
-    const { userName } = req.body;
-    const groups = await User.find({ userName: userName }).groups;
+    try {
+        const { userName } = req.body;
+        const user = await User.find({ userName: userName });
+        const groups = user.groups || [];
 
-    return res.status(200).json({
-        where: "getGroups",
-        groups: groups || []
-    });
+        return res.status(200).json({
+            where: "getGroups",
+            groups: groups
+        });
+    }
+    catch (error) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
 }
 
 exports.getFriendPosts = async (req, res) => {
     try {
-        const userName = req.params.userName;
+        const userName = req.params.id;
         
         // get list of people in the group
-        const friends = await User.find({ userName: userName }).friends;
+        const user = await User.find({ userName: userName });
+        const friends = user.friends || [];
         const memberIds = friends.map((friend) => friend.userName);
+        memberIds.push(userName);
+        console.log(memberIds);
         req.users = memberIds;
         // get all posts from the group members
         const posts = await getTodayPosts(req, res);
         return res.status(200).json({
-          where: "getGroupPosts",
+          where: "getFriendPosts",
           posts: posts,
         });
     }
     catch (error) {
+        console.log("getFriendsPost Errors: ", error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }

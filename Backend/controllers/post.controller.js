@@ -141,7 +141,9 @@ exports.getPost = async (req, res) => {
 exports.getTodayPosts = async (req, res) => {
     try {
         const users = req.users;
+            console.log("post controller",users);
         const today = new Date();
+        console.log("post controller",today)
         const todayPosts = await Post.find({
             userName: { $in: users },
             createdAt: {
@@ -149,11 +151,12 @@ exports.getTodayPosts = async (req, res) => {
                 $lt: today.setHours(23, 59, 59),
             },
         });
-    
-        return res.status(200).json({
-          where: "getTodayPosts",
-          posts: todayPosts,
-        });
+        console.log("post controller",todayPosts);
+        return todayPosts;
+        // return res.status(200).json({
+        //   where: "getTodayPosts",
+        //   posts: todayPosts,
+        // });
     } catch (error) {
         return res.status(500).json({ error: "Internal Server Error" });
     }

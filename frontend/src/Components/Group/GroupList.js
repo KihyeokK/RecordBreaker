@@ -1,39 +1,21 @@
-import React from "react";
+import React, { useEffect , useState } from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import Group from "./Group";
 import NewGroup from "./NewGroup";
+import { getUserGroups } from "../../services";
 
 const GroupList = () => {
-  const fetchedGroups = [
-    {
-      groupId: "dfdd",
-      name: "CodeJam",
-      numMembers: 5,
-      members: [],
-      isPublic: false,
-      messages: [],
-      createdAt: new Date(),
-    },
-    {
-      groupId: "asga",
-      name: "Manaba!!",
-      numMembers: 24,
-      members: [],
-      isPublic: false,
-      messages: [],
-      createdAt: new Date(),
-    },
-    {
-      groupId: "hhrf",
-      name: "Taylor Swift",
-      numMembers: 1000,
-      members: [],
-      isPublic: true,
-      messages: [],
-      createdAt: new Date(),
-    },
-  ];
+  const [fetchedGroups, setFetchedGroups] = useState([]);
+  
+  useEffect(() => {
+    const fetchGroups = async () => {
+      const userName = sessionStorage.getItem("userId");
+      const response = await getUserGroups(userName);
+      setFetchedGroups(response.groups);
+    };
+    fetchGroups();
+  }, []);
 
   return (
     <Box sx={{ ml: 3, mr: 3, mt: 3 }}>

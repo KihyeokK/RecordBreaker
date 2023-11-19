@@ -3,21 +3,19 @@ import { Box } from '@mui/material';
 import codejamlogo from '../../images/codejamlogo.png'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getGroup } from "../../services";
 
 const GroupProfile = (props) => {
     const [group, setGroup] = useState({}) // empty group to begin with
 
     useEffect(() => {
+        // get group from api
+        const fetchGroup = async () => {
+            const response = await getGroup(props.groupId);
+            setGroup(response);
+        }
         // change this with call to api using props.groupId
-        setGroup({
-            groupID: "dfdd",
-            name: "CodeJam",
-            numMembers: 5,
-            members: [],
-            isPublic: false,
-            messages: [],
-            createdAt: new Date(),
-          });
+        fetchGroup();
     }, [])
 
     return (

@@ -29,10 +29,10 @@ exports.createGroup = async (req, res) => {
 
 exports.getGroup = async (req, res) => {
     try {
-        const groupId = req.params.groupId;
+        const groupId = req.params.id;
     
         // Retrieve a specific group by ID
-        const group = await group.findById(groupId);
+        const group = await group.findOne({ groupId });
     
         if (!group) {
           return res.status(404).json({ error: "Group not found" });

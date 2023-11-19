@@ -22,6 +22,7 @@ const NextButton = (props) => {
               window.location.href = "/";
             }
           } catch (error) {
+            console.log(error);
             alert("Incorrect username or password. Please try again.");
             window.location.href = "/";
           }

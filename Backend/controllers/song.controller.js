@@ -40,14 +40,21 @@ exports.createSong = async (req, res) => {
     }
 }
 
-exports.findAll = (req, res) => {
-    Song.find()
-        .then(songs => {
-            res.send(songs);
-        }).catch(err => {
-            res.status(500).send({
-                message: err.message
-            });
+exports.getSong = async (req, res) => {
+    try {
+        const songID = req.params.id;
+        console.log("songID is ", songID);
+        const song = await Song.findOne({ songID });
+        return res.status(200).json({
+            where: "getSong",
+            song: song,
+          });
+    }
+    catch (err) {
+        return res.status(500).send({
+            message: err.message
         });
+    }
 }
+
 
