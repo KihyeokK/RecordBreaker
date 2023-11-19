@@ -50,9 +50,9 @@ exports.login = async (req, res) => {
     // if (!isPWDValid) return res.status(400).json({ message: "Invalid username or password." });
 
     // makeshift password auth for now
-    // const isPWDValid = password === user.password;
-    // if (!isPWDValid)
-    //   return res.status(400).json({ message: "Invalid username or password." });
+    const isPWDValid = password === user.password;
+    if (!isPWDValid)
+      return res.status(400).json({ message: "Invalid username or password." });
 
     res.status(200).json({user});
   } catch (error) {

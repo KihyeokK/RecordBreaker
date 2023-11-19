@@ -26,3 +26,16 @@ export const login = async (credentials) => {
       throw new Error("Error in response");
     }
   };
+
+export const createPost = async (search) => {
+    try{
+      const response = await axios.post(
+        `${API_URL}/posts/`,
+        search
+      );
+      return response.data;
+    } catch (e) {
+      console.log(e);
+      throw new Error("Error in response");
+    }
+  };

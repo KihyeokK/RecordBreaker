@@ -1,10 +1,12 @@
 const Song = require('../models/Song');
 
-exports.createSong = (req, res) => {
+exports.createSong = async (req, res) => {
     try {
-        const { songID, name, artist, albumCover } = req.body;
-
-        const oldSong = Song.findOne({ songID });
+        console.log("create song is called");
+        let { songID, name, artist, albumCover } = req.body;
+        artist = artist[0];
+        const oldSong = await Song.findOne({ songID });
+        console.log("old song is ", oldSong);
         
         if (oldSong) {
             return;
@@ -13,6 +15,7 @@ exports.createSong = (req, res) => {
             //     message: "song already exists",
             // });
         }
+        // access the first elemenf of artist list
 
         const song = new Song({
             songID,
@@ -20,7 +23,8 @@ exports.createSong = (req, res) => {
             artist,
             albumCover
         });
-        song.save();
+        console.log(song);
+        await song.save();
         console.log("song saved");
         return;
         // return res.status(200).json({
@@ -29,7 +33,8 @@ exports.createSong = (req, res) => {
         // });
     }
     catch (err) {
-        res.status(500).send({
+        console.log("HELLO",err);
+        return res.status(500).send({
             message: err.message
         });
     }
