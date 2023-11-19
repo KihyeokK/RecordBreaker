@@ -5,9 +5,8 @@ import logo from "../../images/logo.png";
 import disk from "../../images/cd.svg";
 import { Link } from "react-router-dom";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { borderRadius } from "@mui/system";
 
-const FeedHeader = (props) => {
+const ProfileHeader = (props) => {
   return (
     <Box
       sx={{
@@ -32,26 +31,10 @@ const FeedHeader = (props) => {
           <PersonAddIcon style={{ fontSize: "35px" }}></PersonAddIcon>
         </Link>
       )}
-      <Box
-        component="img"
-        sx={{
-          height: 51,
-          width: 89,
-          maxHeight: { xs: 51 },
-          maxWidth: { xs: 89 },
-        }}
-        alt="The RecordBreaker logo"
-        src={logo}
-      />
-      <Link to="/profile" style={{ color: "white", textDecoration: "inherit" }}>
-        <Box
-          component="img"
-          sx={{ color: "white", maxHeight: "30px", margin: 0 }}
-          src={disk}
-        ></Box>
-      </Link>
+      <Box sx={{fontSize: "25px", ml: 3}}>Profile</Box>
+        <Box sx={{fontSize: "16px"}}>Settings</Box>
     </Box>
   );
 };
 
-export default FeedHeader;
+export default ProfileHeader;

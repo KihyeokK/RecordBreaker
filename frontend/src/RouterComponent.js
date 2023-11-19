@@ -7,6 +7,7 @@ import GroupComponent from "./Components/Group/GroupComponent";
 import GroupDetailComponent from "./Components/GroupDetail/GroupDetailComponent";
 import LoginComponent from "./Components/Login/LoginComponent";
 import { UserProvider } from "./Contexts/UserContext";
+import ProfileComponent from "./Components/Profile/ProfileComponent";
 
 const RouterComponent = () => {
   return (
@@ -18,7 +19,7 @@ const RouterComponent = () => {
           <Route path="/groups" element={<GroupComponent />} />
           <Route path="/groups/:groupId" element={<GroupDetailComponent />} />
           <Route path="/addFriends" element={<AddFriendsComponent />} />
-          {/* <Route path="/profile" element={<UserProfileComponent />} /> */}
+          <Route path="/profile" element={<ProfileComponent />} />
           <Route path="/login" element={<LoginComponent />} />
         </Routes>
       </UserProvider>

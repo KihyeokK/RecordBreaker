@@ -15,11 +15,12 @@ const getUserId = () => {
   } else {
     return userId;
   }
-}
+};
 
 function App() {
   const userContext = useContext(UserContext);
   const user = userContext?.user; // userId or null
+  console.log("user is ", user);
   // useEffect(() => {
   //   if (user && window.location.pathname === "/login") {
   //     window.location.href = "/login"; // If user is logged in, redirect to "/feed"
@@ -28,12 +29,10 @@ function App() {
 
   return (
     <Box className="app">
-    <Box
-      sx={{}}
-    >
-      <RouterComponent />
+        <Box>
+          <RouterComponent />
+        </Box>
     </Box>
-  </Box>
   );
 }
 
