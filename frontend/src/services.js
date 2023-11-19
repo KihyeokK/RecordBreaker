@@ -3,17 +3,15 @@ import axios from "axios";
 // URL to which requests will be sent
 const API_URL = "http://localhost:8080/api";
 
-export const get = async () => {
+export const getFriendPosts = async (userName) => {
   try {
-    // Uses axios to make a get request at "http://localhost:3001/api/tasks"
-    const response = await axios.get(`${API_URL}/tasks`);
+    const response = await axios.get(`${API_URL}/users/${userName}/friends/posts`);
     console.log(
-      "inside getAllTasks helper function: fetching all tasks",
-      response.data.tasks
+      response.data.posts
     );
-    return response.data.tasks;
+    return response.data.posts;
   } catch (e) {
-    alert("Error in Axios get query to /tasks. Could not get all tasks.");
+    alert("Error in Axios get query to /${API_URL}/users/${userName}/friends/posts. Could not get all posts from friends.");
   }
 };
 
