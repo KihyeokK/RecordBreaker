@@ -15,5 +15,8 @@ userRouter.get("/users/:id/groups", userController.getGroups);
 userRouter.get("/users/:id/friends", userController.getFriends);
 // get all posts from friends
 userRouter.get("/users/:id/friends/posts", userController.getFriendPosts);
-
+// request a friend
+userRouter.post("/users/:id/friends/request", userController.requestFriend);
+// accept a friend request
+userRouter.post("/users/:id/friends", userController.acceptFriend);
 module.exports = userRouter;

@@ -4,7 +4,7 @@ const User = require("../models/User");
 exports.createUser = async (req, res) => {
     try {
         const { 
-            userName, 
+            userName,
             password, 
             profilePic, 
             name, 
@@ -16,6 +16,25 @@ exports.createUser = async (req, res) => {
             groups,
             createdAt
         } = req.body;
+        // Check if the username already exists in the database
+        const existingUser = await User.findOne({ userName });
+
+        if (existingUser) {
+            return res.status(400).json({ error: "Username already exists" });
+        }
+
+        // Log the values of each field
+        console.log('userName:', userName);
+        console.log('password:', password);
+        console.log('profilePic:', profilePic);
+        console.log('name:', name);
+        console.log('favoriteArtist:', favoriteArtist);
+        console.log('numGoldenDiscs:', numGoldenDiscs);
+        console.log('numFriends:', numFriends);
+        console.log('friends:', friends);
+        console.log('friendRequests:', friendRequests);
+        console.log('groups:', groups);
+        console.log('createdAt:', createdAt);
 
         const newUser = new User({ 
             userName, 
@@ -37,6 +56,8 @@ exports.createUser = async (req, res) => {
         });
     }
     catch (err) {
+        // print err
+        console.log(err);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
@@ -130,6 +151,41 @@ exports.getFriendPosts = async (req, res) => {
         });
     }
     catch (error) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+exports.requestFriend = async (req, res) => {
+    try {
+        const { userName, friendUserName } = req.body;
+        const user = await User.find({ userName: userName });
+        const friend = await User.find({ userName: friendUserName });
+        // check if friend exists
+        if (!friend) {
+            return res.status(400).json({ error: "Friend does not exist" });
+        }
+        friend.friendRequests.push(user);
+        await user.save();
+        return res.status(200).json({
+            where: "requestFriend"
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+exports.acceptFriend = async (req, res) => {
+    try {
+        const { userName, friendUserName } = req.body;
+        const user = await User.find({ userName: userName });
+        const friend = await User.find({ userName: friendUserName });
+        user.friends.push(friend);
+        await user.save();
+        return res.status(200).json({
+            where: "acceptFriend"
+        });
+    }
+    catch (err) {
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }

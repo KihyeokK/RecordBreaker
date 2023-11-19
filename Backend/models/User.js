@@ -20,29 +20,40 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    
     favoriteArtist: {
         type: String,
         required: false
     },
+    numDiscs: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     numGoldenDiscs: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     numFriends: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     friends: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     friendRequests: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     groups: {
         type: Array,
-        required: true
+        required: true,
+        default: []
     },
     createdAt: {
         type: Date,
