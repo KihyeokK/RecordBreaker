@@ -1,6 +1,5 @@
 const cors = require('cors');
 const express = require("express");
-
 const mongoose = require("mongoose");
 require("dotenv").config();
 const csrf = require("csurf");
@@ -8,8 +7,6 @@ const csrf = require("csurf");
 // Store sesion
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-
-// import routes here
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -59,14 +56,16 @@ app.get('/', (req, res) => {
 
 // import routes here
 const userRoutes = require("./routes/user.route");
+const postRoutes = require("./routes/post.route");
+const groupRoutes = require("./routes/group.route");
 
 // put your routes here
 // every routes will be under /api
 // example endpoint: /api/users/:id
 
 app.use("/api", userRoutes);
-
-
+app.use("/api", postRoutes);
+app.use("/api", groupRoutes);
 
 mongoose
   .connect(MONGODB_URI)
