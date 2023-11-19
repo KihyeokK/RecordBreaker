@@ -8,6 +8,7 @@ import GroupDetailComponent from "./Components/GroupDetail/GroupDetailComponent"
 import LoginComponent from "./Components/Login/LoginComponent";
 import { UserProvider } from "./Contexts/UserContext";
 import ProfileComponent from "./Components/Profile/ProfileComponent";
+import Welcome from "./Components/General/Welcome";
 
 const RouterComponent = () => {
   return (
