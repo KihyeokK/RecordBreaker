@@ -13,7 +13,7 @@ const FeedHeader = () => {
         justifyContent: "space-between",
         alignItems: "center",
         mt: 5,
-        ml: 3,
+        ml: 4,
         mr: 4,
         mb: 2,
       }}
