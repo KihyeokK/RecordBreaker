@@ -44,7 +44,7 @@ const GroupList = () => {
                 groupName={group.name}
                 numMembers={group.numMembers}
                 numGoldenDiscs={group.members}
-                comments={group.isPublic}
+                isPublic={group.isPublic}
                 messages={group.messages}
                 createdAt={group.createdAt}
               ></Group>

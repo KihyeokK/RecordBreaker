@@ -12,7 +12,7 @@ const LoginHeader = () => {
         pb: 2
       }}
     >
-        Username
+        Login
     </Box>
   );
 };

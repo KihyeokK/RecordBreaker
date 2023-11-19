@@ -24,10 +24,10 @@ const LogInForm = ({isLoginScreen}) => {
       </Box> : 
   
       <Box sx={{ mt: 5, ml: 5, mr: 5, fontFamily: "Poppins" }}>
-        <Box sx={{ fontSize: "14px", mt: 5 }}>Create username</Box>
+        <Box sx={{ fontSize: "14px", mt: 5 }}>Username</Box>
         <TextField sx={{width: "100%", input: { color: "white", background: "" }}} id="standard-basic" label="" variant="standard" />
         <Divider style={{ background: '#898989' }} />
-        <Box sx={{ fontSize: "14px", mt: 3 }}>Create password</Box>
+        <Box sx={{ fontSize: "14px", mt: 3 }}>Password</Box>
         <TextField sx={{width: "100%", input: { color: "white", background: "" }}} onChange={handlePasswordChange} id="standard-basic" label="" variant="standard" />
         <Divider style={{ background: '#898989' }} />
       </Box>}
