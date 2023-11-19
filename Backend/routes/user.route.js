@@ -1,5 +1,6 @@
 const express = require("express");
 const userController = require("../controllers/user.controller");
+const authController = require("../controllers/auth.controller");
 
 const userRouter = express.Router();
 
@@ -19,4 +20,7 @@ userRouter.get("/users/:id/friends/posts", userController.getFriendPosts);
 userRouter.post("/users/:id/friends/request", userController.requestFriend);
 // accept a friend request
 userRouter.post("/users/:id/friends", userController.acceptFriend);
+
+userRouter.post("/login", authController.login);
+
 module.exports = userRouter;
