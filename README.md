@@ -1,5 +1,7 @@
 # RecordBreaker
-McGill CodeJam Hackathon 2023
+McGill CodeJam Hackathon 2023 Best UI/UX Winner
+
+Devpost: https://devpost.com/software/record-breaker
 ## What It Does
 Record Breaker is a new social platform that makes it easier for music fans to share their favorite tracks with friends, engage in competitive fun, connect with like-minded music enthusiasts, and story tell their life through music. Record Breaker also provides the opportunity for smaller or local artists to gain exposure and potentially break into the music industry. Not only can you support them and keep up to date with their music, you can also listen to their music recommendations!
 
